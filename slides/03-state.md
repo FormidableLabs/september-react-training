@@ -103,7 +103,6 @@ may receive outdated information.
 
 ---
 
-
 ```javascript
 class Counter extends React.Component {
   state = {
@@ -111,9 +110,11 @@ class Counter extends React.Component {
   };
 
   handleClick = () => {
-    this.setState((currentState) => {{
-      count: currentState.count + 1
-    }});
+    this.setState(currentState => {
+      {
+        count: currentState.count + 1;
+      }
+    });
   };
 
   render() {
@@ -174,9 +175,11 @@ class NameInput extends React.Component {
 }
 ```
 
-Notes: We briefly discussed one-way binding in the Overview, but now that we've learned about Reacts data models we can dive into this more deeply. A good example of Reacts data flow is an input element. In this example, the `NameInput` component is the parent of the `input` element. `NameInput` holds the value of `name` in its `state`.It passes this value down to its child `input`. When a user types into the input field, the `handleChange` method is called and updates the state of the `NameInput` component. When the state is updated, React re-renders the component and its children.
+Notes: React enforces the concept of unidirectional data flow, where data only flows downwards. A good example of Reacts data flow is an input element. In this example, the `NameInput` component is the parent of the `input` element. `NameInput` holds the value of `name` in its `state`.It passes this value down to its child `input`. When a user types into the input field, the `handleChange` method is called and updates the state of the `NameInput` component. When the state is updated, React re-renders the component and its children.
 
 What happens if we were to remove the `onChange` property on the input element and type in the input field? The value of the input field wouldn't update. That's because React is not listening to the input fields events and the input field can't tell React to update its state. It can only announce that its value has changed and let React choose how to respond to it. In this way, React is one-way binding.
+
+---
 
 ## When to Avoid Component State
 
@@ -185,7 +188,7 @@ What happens if we were to remove the `onChange` property on the input element a
 
 Notes: Local state can get unwieldy fast. More often than not, what starts out as local state ends up being state that should be share by multiple components AKA application state. With React's component tree, you'd have to move all this state into a common ancestor component in order to share state with sibling or components on other tree nodes.
 
-Component state should be used sparingly when it's clear that the state will always only relate to the current component or direct child components. For example, certain input components in component libraries may want to control their own validation state or tooltip state. Generally though most state in an application is bigger than a single component. For this we have a few options for application state stored outside of the component tree.
+Component state should be used sparingly when it's clear that the state will only relate to the current component or direct child components. For example, certain input components in component libraries may want to control their own validation state or tooltip state. Generally though most state in an application is bigger than a single component. For this we have a few options for application state stored outside of the component tree.
 
 ---
 
