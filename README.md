@@ -1,4 +1,4 @@
-# zulily-react-training
+# September-react-training
 
 ## To run
 
