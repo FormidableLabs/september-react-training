@@ -15,7 +15,6 @@
         - `div` class of `preview-content`
           - `h3` class of `preview-title`
           - `p` class of `preview-body`
-        - `span` class of `preview-delete`, an `aria-label` of `delete`
 
 2. Wrap the `h1` in a `Link` with a prop `to` with a value of `"/"`
 
